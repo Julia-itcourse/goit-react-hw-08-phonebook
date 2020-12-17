@@ -37,7 +37,7 @@ class RegisterView extends Component {
         <h2>Sign up</h2>
         <form onSubmit={this.handleSubmit} className={styles.form__group}>
           <input
-            className={styles.form__input}
+       className="form__input"
             name="name"
             type="text"
             value={name}
@@ -47,7 +47,7 @@ class RegisterView extends Component {
           />
 
           <input
-            className={styles.form__input}
+               className="form__input"
             name="email"
             type="email"
             value={email}
@@ -57,7 +57,7 @@ class RegisterView extends Component {
           />
 
           <input
-            className={styles.form__input}
+               className="form__input"
             name="password"
             type="password"
             value={password}
@@ -66,7 +66,7 @@ class RegisterView extends Component {
             required
           />
 
-          <button className={styles.button} type="submit">
+          <button className="button" type="submit">
             Sign Up
           </button>
         </form>

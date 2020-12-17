@@ -7,11 +7,11 @@ const styles = {
     width: 320,
   },
   label: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     padding: 4,
   },
-};
+}
 
 class LoginView extends Component {
   state = {
@@ -25,6 +25,7 @@ class LoginView extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+
     this.props.onLogin({ ...this.state })
     this.setState({ name: "", email: "", password: "" })
   }
@@ -35,7 +36,6 @@ class LoginView extends Component {
       <>
         <h2>Log in</h2>
         <form onSubmit={this.handleSubmit} className={styles.form__group}>
-
           <input
             className={styles.form__input}
             name="email"
@@ -66,9 +66,7 @@ class LoginView extends Component {
 }
 
 const mapDispatchToProps = {
-    onLogin: authOperations.logIn 
+  onLogin: authOperations.logIn,
 }
 
-export default connect(null, {mapDispatchToProps })(
-  LoginView
-)
+export default connect(null, mapDispatchToProps)(LoginView)

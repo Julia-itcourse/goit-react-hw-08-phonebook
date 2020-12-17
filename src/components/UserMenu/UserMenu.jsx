@@ -20,8 +20,8 @@ const styles = {
 const UserMenu = ({ name, email, onLogout }) => (
   <div className="UserMenuWrapper">
     <ul>
-      <li>`Hello, ${name}`</li>
-      <li>`Email: ${email}</li>
+      <li>Hello, {name}</li>
+      <li>Email: {email}</li>
     </ul>
     <button className={styles.button} type="button" onClick={onLogout}>
       Log Out

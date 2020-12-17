@@ -1,73 +1,72 @@
 import axios from "axios"
 import authActions from "./authActions"
 
-axios.defaults.baseURL = 'https://goit-phonebook-api.herokuapp.com/'
+axios.defaults.baseURL = "https://goit-phonebook-api.herokuapp.com/"
 
 const token = {
-    set(token) {
-        axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-    },
-    unset() {
-        axios.defaults.headers.common.Authorization = '';
-    }
+  set(token) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = ""
+  },
 }
 
-const register = credentials => dispatch => {
-    dispatch(authActions.registerRequest());
+const register = (credentials) => (dispatch) => {
+  console.log("register - before dispatch", credentials)
+  dispatch(authActions.registerRequest())
 
-    axios
-    .post('/users/signup', credentials)
-    .then(resultData =>{
-        token.set(resultData.data.token);
-        dispatch(authActions.registerSuccess(resultData.data));
+  console.log("register - after dispatch", credentials)
+
+  axios
+    .post("/users/signup", credentials)
+    .then((resultData) => {
+      token.set(resultData.data.token)
+      dispatch(authActions.registerSuccess(resultData.data))
     })
-    .catch(error => dispatch(authActions.registerError(error)))
-    }
+    .catch((error) => dispatch(authActions.registerError(error)))
+}
 
+const logIn = (credentials) => (dispatch) => {
+  dispatch(authActions.loginRequest())
 
-
-const logIn = credentials => dispatch => {
-    dispatch(authActions.loginRequest());
-
-    axios
-    .post('/users/login', credentials)
-    .then(resultData =>{
-        token.set(resultData.data.token);
-        dispatch(authActions.loginSuccess(resultData.data));
+  axios
+    .post("/users/login", credentials)
+    .then((resultData) => {
+      token.set(resultData.data.token)
+      dispatch(authActions.loginSuccess(resultData.data))
     })
-    .catch(error => dispatch(authActions.loginError(error)))
-    }
+    .catch((error) => dispatch(authActions.loginError(error)))
+}
 
+const logOut = () => (dispatch) => {
+  dispatch(authActions.logoutRequest())
 
-
-const logOut = () => dispatch => {
-    dispatch(authActions.logoutRequest());
-
-    axios
-    .post ('users/logout')
+  axios
+    .post("users/logout")
     .then(() => {
-        token.unset();
-        dispatch (authActions.logoutSuccess());
+      token.unset()
+      dispatch(authActions.logoutSuccess())
     })
-    .catch(error => dispatch(authActions.logoutError(error)));
+    .catch((error) => dispatch(authActions.logoutError(error)))
 }
 
 const onGetCurrentUser = () => (dispatch, getState) => {
-    const {
-        auth: {token: persistedToken},
-    } = getState();
+  const {
+    auth: { token: persistedToken },
+  } = getState()
 
-    if(!persistedToken) {
-        return;
-    }
+  if (!persistedToken) {
+    return
+  }
 
-    token.set(persistedToken);
-    dispatch(authActions.getCurrentUserRequest());
+  token.set(persistedToken)
+  dispatch(authActions.getCurrentUserRequest())
 
-    axios
-    .get('users/current')
-    .then(({data}) => dispatch(authActions.getCurrentUserSuccess(data)))
-    .catch(error => dispatch(authActions.getCurrentUserError(error)))
+  axios
+    .get("users/current")
+    .then(({ data }) => dispatch(authActions.getCurrentUserSuccess(data)))
+    .catch((error) => dispatch(authActions.getCurrentUserError(error)))
 }
 
-export default {register, logOut, logIn, onGetCurrentUser}
+export default { register, logOut, logIn, onGetCurrentUser }

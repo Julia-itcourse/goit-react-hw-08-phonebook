@@ -7,11 +7,11 @@ const styles = {
     width: 320,
   },
   label: {
-    display: 'flex',
-    flexDirection: 'column',
+    display: "flex",
+    flexDirection: "column",
     padding: 4,
   },
-};
+}
 
 class RegisterView extends Component {
   state = {
@@ -21,11 +21,14 @@ class RegisterView extends Component {
   }
 
   handleChange = ({ target: { name, value } }) => {
+    console.log("handle change", name, value)
     this.setState({ [name]: value })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
+
+    console.log("handle submit", this.state)
     this.props.onRegister({ ...this.state })
     this.setState({ name: "", email: "", password: "" })
   }
@@ -79,4 +82,4 @@ const mapDispatchToProps = {
   onRegister: authOperations.register,
 }
 
-export default connect(null, { mapDispatchToProps })(RegisterView)
+export default connect(null, mapDispatchToProps)(RegisterView)

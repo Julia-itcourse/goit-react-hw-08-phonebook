@@ -2,7 +2,7 @@ import React from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
 import authSelectors from "../../redux/auth/authSelectors"
-// import { styles } from "./Navigation.styles"
+
 
 const styles = {
   link: {
@@ -10,10 +10,12 @@ const styles = {
     textDecoration: 'none',
     padding: 12,
     fontWeight: 700,
-    color: '#2A363B',
+    color: '#8fc1e3',
   },
   activeLink: {
-    color: '#E84A5F',
+
+    color: '#ffffff',
+    textDecoration: 'underline'
   },
 };
 

@@ -1,27 +1,15 @@
 import React from "react"
 import { connect } from "react-redux"
 import { authSelectors, authOperations } from "../../redux/auth"
-// import { styles } from "./UserMenu.styles"
+import styles from "./UserMenu.module.css"
 
-const styles = {
-  container: {
-    display: "flex",
-    alignItems: "center",
-  },
-  avatar: {
-    marginRight: 4,
-  },
-  name: {
-    fontWeight: 700,
-    marginRight: 12,
-  },
-}
+
 
 const UserMenu = ({ name, email, onLogout }) => (
-  <div className="UserMenuWrapper">
+  <div className={styles.container}>
     <ul>
-      <li>Hello, {name}</li>
-      <li>Email: {email}</li>
+      <li className = {styles.user_item}>Hello, {name}</li>
+      <li className = {styles.user_item}>Email: {email}</li>
     </ul>
     <button className={styles.button} type="button" onClick={onLogout}>
       Log Out

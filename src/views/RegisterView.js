@@ -21,14 +21,11 @@ class RegisterView extends Component {
   }
 
   handleChange = ({ target: { name, value } }) => {
-    console.log("handle change", name, value)
     this.setState({ [name]: value })
   }
 
   handleSubmit = (event) => {
     event.preventDefault()
-
-    console.log("handle submit", this.state)
     this.props.onRegister({ ...this.state })
     this.setState({ name: "", email: "", password: "" })
   }

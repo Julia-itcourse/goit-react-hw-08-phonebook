@@ -1,7 +1,8 @@
 import React from "react"
 import { NavLink } from "react-router-dom"
 import { connect } from "react-redux"
-// import { styles } from "./NavBar.styles"
+// import { styles } from "./NavBar.module.css"
+
 
 const styles = {
   link: {
@@ -9,10 +10,12 @@ const styles = {
     textDecoration: 'none',
     padding: 12,
     fontWeight: 700,
-    color: '#2A363B',
+    color: '#8fc1e3',
   },
   activeLink: {
-    color: '#E84A5F',
+
+    color: '#ffffff',
+    textDecoration: 'underline'
   },
 };
 
@@ -24,7 +27,7 @@ const NavBar = (props) => (
           exact
           to="/login"
           className="Navigation-link"
-          activeClassName="Navigation-link-active"
+          activeClassName={styles.activeLink}
         >
           Log In
         </NavLink>

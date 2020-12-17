@@ -26,14 +26,14 @@ class ContactsView extends Component {
 
         <PhonebookForm />
 
-        {/* <CSSTransition
+        <CSSTransition
           in={this.props.contacts.items.length > 1}
           timeout={500}
           classNames={"filter"}
           unmountOnExit
         >
           <Filter />
-        </CSSTransition> */}
+        </CSSTransition>
 
         <ContactList />
       </>
@@ -41,8 +41,12 @@ class ContactsView extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return { contacts: state.contacts }
+}
+
 const mapDispatchToProps = {
   onFetchTasks: contactsOperations.onFetchContacts,
 }
 
-export default connect(null, mapDispatchToProps)(ContactsView)
+export default connect(mapStateToProps, mapDispatchToProps)(ContactsView)

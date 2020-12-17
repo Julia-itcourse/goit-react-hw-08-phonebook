@@ -1,44 +1,29 @@
-import React from 'react';
-import NavBar from '../NavBar';
-import UserMenu from '../UserMenu';
-import {authSelectors} from '../../redux/auth'
-import { connect } from 'react-redux';
-
+import React from "react"
+import NavBar from "../NavBar"
+import UserMenu from "../UserMenu"
+import Navigation from '../Navigation';
+import { authSelectors } from "../../redux/auth"
+import { connect } from "react-redux"
 
 const styles = {
-  header:{
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center', 
-    backgroundColor: '#5085A5',
-    color: '#ffffff'
-  }
+  header: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
+    backgroundColor: "#5085A5",
+    color: "#ffffff",
+  },
 }
 
-const AppBar = ({isAuthenticated}) => (
-<header style = {styles.header}>
-{!isAuthenticated && <NavBar/>}
-{isAuthenticated && <UserMenu/>}
-</header>
-);
+const AppBar = ({ isAuthenticated }) => (
+  <header style={styles.header}>
+    <Navigation />
+    {isAuthenticated ? <UserMenu /> : <NavBar />}
+  </header>
+)
 
-AppBar.propTypes = {
-  // bla: PropTypes.string,
-};
+const mapStateToProps = (state) => ({
+  isAuthenticated: authSelectors.isAuthenticated(state),
+})
 
-AppBar.defaultProps = {
-  // bla: 'test',
-};
-
-const mapStateToProps = state => ({
-isAuthenticated: authSelectors.isAuthenticated(state),
-});
-
-const mapDispatchToProps = dispatch => ({
-  // fnBlaBla: () => dispatch(action.name()),
-});
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(AppBar);
+export default connect(mapStateToProps)(AppBar)

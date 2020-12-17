@@ -2,6 +2,17 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { authOperations } from "../redux/auth"
 
+const styles = {
+  form: {
+    width: 320,
+  },
+  label: {
+    display: 'flex',
+    flexDirection: 'column',
+    padding: 4,
+  },
+};
+
 class RegisterView extends Component {
   state = {
     name: "",
@@ -48,7 +59,7 @@ class RegisterView extends Component {
           <input
             className={styles.form__input}
             name="password"
-            type="text"
+            type="password"
             value={password}
             onChange={this.handleChange}
             placeholder="Password"
@@ -65,9 +76,7 @@ class RegisterView extends Component {
 }
 
 const mapDispatchToProps = {
-    onRegister: authOperations.register 
+  onRegister: authOperations.register,
 }
 
-export default connect(null, {mapDispatchToProps })(
-  RegisterView
-)
+export default connect(null, { mapDispatchToProps })(RegisterView)

@@ -6,14 +6,17 @@ import Logo from "../Logo"
 import { CSSTransition } from "react-transition-group"
 import { connect } from "react-redux"
 import contactsOperations from "../../redux/contacts/contactsOperations"
+import authOperations from "../../redux/auth/authOperations"
+
 
 class App extends Component {
-  state = {
-    showNotification: false,
-  }
+  // state = {
+  //   showNotification: false,
+  // }
 
   componentDidMount(){
-    this.props.onFetchContacts()
+    this.props.onFetchContacts();
+    this.props.onGetCurrentUser()
   }
 
   render() {
@@ -52,6 +55,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = {
   onFetchContacts: contactsOperations.onFetchContacts,
+  onGetCurrentUser: authOperations.onGetCurrentUser,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)

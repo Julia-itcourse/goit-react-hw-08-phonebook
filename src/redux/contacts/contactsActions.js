@@ -12,7 +12,7 @@ const removeContactRequest = createAction("contacts/removeRequest")
 const removeContactSuccess = createAction("contacts/removeSuccess")
 const removeContactError = createAction("contacts/removeError")
 
-const onChangeFilter = createAction("contact/filter")
+const onChangeFilter = createAction("contact/filter", filter=> ({payload: {filter}}) )
 
 export default {
   addContactRequest,

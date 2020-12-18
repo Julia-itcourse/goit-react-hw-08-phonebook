@@ -27,7 +27,7 @@ class ContactsView extends Component {
         <PhonebookForm />
 
         <CSSTransition
-          in={this.props.contacts.items.length > 1}
+          in={this.props.contacts.length > 1||this.props.filter}
           timeout={500}
           classNames={"filter"}
           unmountOnExit
@@ -42,7 +42,8 @@ class ContactsView extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { contacts: state.contacts }
+  return { contacts: state.contacts.items,
+  filter: state.contacts.filter }
 }
 
 const mapDispatchToProps = {
